@@ -62,7 +62,7 @@ create_backup() {
 
     tar --totals -czf $Output $BackupFiles
 
-    read Sum=("$(shasum $Output)")
+    Sum=("$(shasum $Output)")
     echo "Checksum is ${Sum}"
     
     mv $Output $OutDir$Sum'.tar.gz'
@@ -72,7 +72,7 @@ create_backup() {
     Max="$4"
     if [[ $Max != '' ]]; then
         while [[ $(ls $OutDir*'.tar.gz' | wc -l) -gt $Max ]]; do
-            read Oldest=("$(ls $OutDir*'.tar.gz' -tr)")
+            Oldest=("$(ls $OutDir*'.tar.gz' -tr)")
             echo "Removing ${Oldest}"
             rm $Oldest
         done
@@ -123,7 +123,7 @@ check() {
     Passed=0
     Total=0
     for arch in $Archives; do
-        echo "$(basename $arch '.tar.gz')""  ${arch}" | shasum -c 2>/dev/null)
+        echo "$(basename $arch '.tar.gz')""  ${arch}" | shasum -c 2>/dev/null
     done              
 }
 

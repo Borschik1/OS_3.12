@@ -120,8 +120,6 @@ check() {
         exit 1
     fi
 
-    Passed=0
-    Total=0
     for arch in $Archives; do
         echo "$(basename $arch '.tar.gz')""  ${arch}" | shasum -c 2>/dev/null
     done              
